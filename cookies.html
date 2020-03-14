@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+    let login = prompt('Введите логин:');
+    let password = prompt('Введите пароль:');
+    let secretWord = prompt('Введите секретное слово:');
+    let date = new Date(Date.now() + 172800e3);//1 day - 86400e3 2 day - 172800e3
+    let date1 = new Date(-1);
+    function setCookie(){
+            document.cookie = `login=${login}; expires=` + date;
+            document.cookie = `password=${password}`;
+            document.cookie = `secretWord=${secretWord}`;
+        }
+
+        function getCookie(){
+            let word = prompt('Введите секретное слово:');
+            if(word == secretWord){
+            alert(document.cookie);
+            }
+            else if (word !== secretWord || word == undefined){
+                alert('Неверное слово или его отсутствие!');
+            }
+        }
+
+        function deleteCookie(name) {
+             document.cookie = "login=; expires=" + date1;
+             document.cookie = "password=; expires=" + date1;
+        }
+    </script>
+</head>
+<body>
+   <input type="button" value="Set cookie" onclick="setCookie()"/>
+   <input type="button" value="Get cookie" onclick="getCookie()"/>
+   <input type="button" value="Delete cookie" onclick="deleteCookie()"/>
+</body>
+</html>

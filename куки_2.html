@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+
+   function parseCookie()   // Разделение cookie
+   { var cookieList = document.cookie.split("; ");
+   // Массив для каждого cookie в cookieList
+   var cookieArray = new Array();
+   for (var i = 0; i < cookieList.length; i++) {
+       // Разделение пар имя-значение.
+       var name = cookieList[i].split("=");
+       // Декодирование и добавление в cookie-массив.
+       cookieArray[unescape(name[0])] = unescape(name[1]);
+    }
+   return cookieArray;
+  }
+
+ function setCookie(visits) {
+    /* Счетчик числа посещений с указанием даты последнего посещения
+       и определением срока хранения в 1 год. */
+    var expireDate = new Date();
+    var today = new Date();
+    // Установка даты истечения срока хранения.
+    expireDate.setDate(365 + expireDate.getDate());
+    // Сохранение числа посещений.
+    document.cookie = "visits=" + visits +
+                      "; expires=" + expireDate.toGMTString() + ";";
+    // Сохранение настоящей даты как времени последнего посещения.
+    document.cookie = "LastVisit=" + escape(today.toGMTString()) +
+                       "; expires=" + expireDate.toGMTString() + ";";
+    }
+
+
+var num;
+   img1 = new Image ()
+   img1.src = "1.jpg"
+   img2 = new Image ()
+   img2.src = "2.jpg"
+   img3 = new Image ()
+   img3.src = "3.jpg"
+   img4 = new Image ()
+   img4.src = "4.jpg"
+
+
+var todayDate = new Date();
+    var currMonth = todayDate.getMonth() + 1;
+     if(currMonth >= 3 && currMonth <= 5){
+         currMonth = "Сейчас весна! Время вечерних пробежек!!!";
+         num = 1;
+     }
+     else if(currMonth >= 6 && currMonth <= 8){
+         currMonth = "Сейчас лето! Время плавать!!!";
+         num = 2;
+     }
+     else if(currMonth >= 9 && currMonth <= 11){
+         currMonth = "Сейчас осень! Пора в поход!!!";
+         num = 3;
+     }
+     else {
+         currMonth = "Сейчас зима! Время кататься на коньках!!!";
+         nym = 4;
+     }
+
+    if ("" == document.cookie)
+  { // Инициализация cookie.
+   setCookie(1);
+   var name = prompt('Введите имя:');
+   document.write(`<H3>Поздравляю Вас с первым посещением моего сайта, ${name}. ${currMonth}</H3>` + `<img src="images/${num}.jpg">`);
+  }
+    else {
+       var cookies = parseCookie();
+       // Вывод приветствия, числа посещений и увеличение числа посещений на 1.
+       document.write(`<H4>Мы снова рады видеть Вас на моем сайте, ${name}! Число лично ваших посещений - ` +
+          cookies.visits++ + " !</H4>");
+       // Вывод даты последнего посещения.
+       document.write("<H4>Последний раз Вы были у меня на сайте: " + cookies.LastVisit + ".</H4>");
+       // Обновление cookie.
+       setCookie(isNaN(cookies.visits)?1:cookies.visits);
+    }
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
